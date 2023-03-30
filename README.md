@@ -1,0 +1,1 @@
+# ruby_virtual_currency
