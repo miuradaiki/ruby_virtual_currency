@@ -29,6 +29,8 @@ blockchain.add_block([
 
 # 各ブロックの内容の確認方法
 
+これにより各ブロックのハッシュ値、前のブロックのハッシュ値、トランザクション、nonce値、およびタイムスタンプが出力される。
+
 ```ruby
 blockchain.chain.each do |block|
   puts "Block hash: #{block.hash}"
@@ -39,3 +41,15 @@ blockchain.chain.each do |block|
 end
 
 ```
+
+# 内容について
+- Transaction、Block、およびBlockchainの3つのクラスを含む
+  - Transactionクラスはトランザクションを表す
+  - Blockクラスはブロックを表す
+  - Blockchainクラスは複数のブロックを接続してブロックチェーンを形成する
+
+- Blockクラスは`compute_hash_with_proof_of_work`メソッドを使用してブロックのハッシュ値を計算する
+  - ブロックのnonce値を変更することによって、難易度に応じた条件を満たすハッシュ値を見つけるためのプルーフ・オブ・ワーク（PoW）アルゴリズムを実装
+
+- Blockchainクラスは新しいトランザクションを含むブロックを追加するためのadd_blockメソッドを提供する
+  - 前のブロックのハッシュ値を使用して、新しいブロックのハッシュ値を計算する
